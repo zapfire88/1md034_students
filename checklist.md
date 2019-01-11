@@ -1,6 +1,6 @@
 # Checklist
 
-Before you submit the final version of your labs, make sure that your project fullfills all of the tasks mentioned above.
+Before you submit the final version of your labs, make sure that your project fulfils all of the tasks mentioned below.
 
 ## 00 Introduction
 
@@ -8,7 +8,7 @@ Before you submit the final version of your labs, make sure that your project fu
 
 ## 01 Git
 
-- [X] Fork and clone the 1md032_18_students repository
+- [X] Fork and clone the 1md034_students repository
 
 
 ## 02 HTML
@@ -36,7 +36,7 @@ Create a style.css file which contains:
 - [ ] Change the cursor when hovering over the order button
 - [ ] Adds margins to the sections and the order button
 - [ ] Add a border to the two sections
-- [ ] Create a header that palces an image behind the headline
+- [ ] Create a header that places an image behind the headline
 - [ ] Use a grid layout instead of tables for the burger selection section
 
 
