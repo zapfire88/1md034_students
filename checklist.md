@@ -72,8 +72,8 @@ Create a vue_script.js file and use Vue's custom HTML in index.html to do the fo
     - [ ] The customer information
     
 ## Optional
-- [ ] Set the orderID on client side so one customer can make multiple orders
-- [ ] Only allow the order to be sent if all necessary information are provided
+- [ ] Set the orderID on the server side so that multiple customers can add orders
+- [ ] Only allow the order to be sent if all necessary information is provided
 - [ ] Display the order(s) on the customer page as well
 - [ ] Allow the dispatcher to handle orders by providing buttons next to every order that can switch the order status to "in preparation" and "done"
 - [ ] Display the order status to the customer and update it in the customer view if updated by the dispatcher
