@@ -13,10 +13,13 @@ Before you submit the final version of your labs, make sure that your project fu
 
 ## 02 HTML
 
+- [ ] Ensure the website loads when opening http://localhost:3000/
+
 Create an index.html file which contains:
 - [ ] A title
-- [ ] A headline
-- [ ] A section to select burgers that contains at least three items. Each item has:
+- [ ] A main headline and two section headlines
+- [ ] Semantic tags that correspond to the parts of your page
+- [ ] A section to select burgers that contains at least three items. Each item has at least:
 	- [ ] A name
 	- [ ] An image
 	- [ ] Information about allergies 
@@ -27,17 +30,23 @@ Create an index.html file which contains:
 	- [ ] House Number (only allowing numbers in this field)
 	- [ ] Gender (male, female, do not wish to provide as radio buttons)
 - [ ] A button to place the order
-- [ ] Ensure the website loads when opening http://localhost:3000/
 
 ## 03 CSS
 
-Create a style.css file which contains:
-- [ ] A rule to make the allergy information bold
-- [ ] Different text and background color for the two different sections (burger selection and customer information)
-- [ ] Change the cursor when hovering over the order button
-- [ ] Adds margins to the sections and the order button
+- [ ] Create style.css and link to it from index.html
+
+Add the following style/behaviour to your website (mostly in style.css but also requiring changes in index.html):
+- [ ] Define a base line font for your site by putting the style rule on "body"
+- [ ] Define a larger base line font size
+- [ ] A CSS rule to make the allergy information bold
+- [ ] Define text and background color for one of your two sections (burger selection and customer information)
+- [ ] Create an empty style definition for the section with unchanged text and background
+- [ ] Change the cursor and background when hovering over the order button
+- [ ] Define a table width and center it
+- [ ] Add margins to the sections and the order button
 - [ ] Add a border to the two sections
-- [ ] Create a header that places an image behind the headline
+- [ ] Add an image after your headline and make it slightly transparent
+- [ ] Place the image behind your headline to finalize your header
 - [ ] Use a grid layout instead of tables for the burger selection section
 
 
