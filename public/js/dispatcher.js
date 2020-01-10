@@ -2,9 +2,9 @@
 /*global Vue, io */
 /* exported vm */
 'use strict';
-var socket = io();
+const socket = io();
 
-var vm = new Vue({
+const vm = new Vue({
   el: '#orders',
   data: {
     orders: {},

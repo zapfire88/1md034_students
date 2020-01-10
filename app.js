@@ -3,14 +3,14 @@
 'use strict';
 
 // Require express, socket.io, and vue
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var path = require('path');
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const path = require('path');
  
 // Pick arbitrary port for server
-var port = 3000;
+const port = 3000;
 app.set('port', (process.env.PORT || port));
 
 // Serve static assets from public/
@@ -48,7 +48,7 @@ Data.prototype.getAllOrders = function () {
   return this.orders;
 };
 
-var data = new Data();
+const data = new Data();
 
 io.on('connection', function (socket) {
   // Send list of orders when a client connects
@@ -63,6 +63,6 @@ io.on('connection', function (socket) {
 
 });
 
-var server = http.listen(app.get('port'), function () {
+const server = http.listen(app.get('port'), function () {
   console.log('Server listening on port ' + app.get('port'));
 });
