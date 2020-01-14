@@ -1,6 +1,6 @@
 # Checklist
 
-Before you submit the final version of your labs, make sure that your project fulfils all of the tasks mentioned below.
+Before you submit the different parts of your lab, make sure that your project fulfils the tasks mentioned below.
 
 ## 00 Introduction
 
