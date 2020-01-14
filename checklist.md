@@ -75,17 +75,22 @@ Add the following style/behaviour to your website (mostly in style.css but also 
 
 ## 05 Messaging
 
-- [ ] Exchange the field for the customer's address with the interactive map
-- [ ] Location information from the map should be send to the dispatcher view when pressing the "order" button
-- [ ] In the dispatcher view, you should see the following for every order:
-    - [ ] A location on the map
-    - [ ] The order information
-    - [ ] The customer information
+- [ ] Exchange the fields for the customer's address with the interactive map
+- [ ] Copy the parts of deli-very.js that you need to make the map work into vue_script.js
+- [ ] Check that your map works and adjust the coordinates if the dots don't show up in the right place.
+- [ ] Separate addOrder into one function that controls what should happen when a user clicks in the map (displayOrder) and rewrite addOrder to control what should happen when the user clicks the order button
+- [ ] Remove the socket.on bindings to "currentQueue" and "initialize", and temporarily fix getNext to assign locally generated orderId's when an order is sent
+- [ ] Send the actual burgers with the order instead of Beans and Curry
+- [ ] Send the customer's information from your input fields with the order
+- [ ] Update the dispatcher view so that you see the following for every order:
+    - [ ] The order's location on the map
+    - [ ] The ordered burger(-s)
+    - [ ] The customer's information
     
 ## Optional
 - [ ] Set the orderID on the server side so that multiple customers can add orders
 - [ ] Only allow the order to be sent if all necessary information is provided
-- [ ] Display the order(s) on the customer page as well
+- [ ] Display multiple orders on the customer page
 - [ ] Allow the dispatcher to handle orders by providing buttons next to every order that can switch the order status to "in preparation" and "done"
 - [ ] Display the order status to the customer and update it in the customer view if updated by the dispatcher
 - [ ] Find a better visualization for what orders belong to which location on the map
