@@ -4,7 +4,8 @@
   "description": "Stub for delivery service",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint app.js public/js/*.js"
   },
   "author": "Mikael Laaksoharju",
   "license": "ISC",
@@ -12,5 +13,10 @@
     "express": "^4.16.2",
     "socket.io": "^2.0.4",
     "vue": "^2.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-vue": "^6.1.2"
   }
 }
