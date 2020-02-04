@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif|Share+Tech+Mono");
+
+
+
+body{
+    font-family: "Droid Serif", sans-serif;
+    font-size: 110%;
+    margin: 0 auto;
+    
+}
+
+table{
+    width: 100%;
+    margin: 0 auto;
+}
+
+td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
+.wrapper{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 300px;
+    background-color: black;
+    color: white;
+}
+
+
+.burger{
+    
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.a{
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.b{
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.c{
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#burgerTitle{
+    /* font-weight: bold; */
+    font-size: 125%;
+}
+
+
+.allergies {
+    /* color: #0000FF; */
+    font-weight: bold;
+}
+
+.heading{
+    margin-left: 10px;
+    height: 200px;
+    overflow: hidden;
+
+}
+
+#headingImage{
+    opacity: 0.7;
+    height: auto;
+    width: 100%;
+}
+
+#headingWelcome{
+    position: absolute;
+    padding-left: 50px;
+    padding-top: 50px;
+    margin-top: -650px;
+    margin-left: 50px;
+}
+
+#burgers{
+    border: 2px dashed white;
+    background-color: black;
+    color: white;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+#contact{
+    border: 2px dashed black;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+button{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+button:hover{
+    background-color: aqua;
+    cursor:pointer;
+}

@@ -2,55 +2,53 @@
 <html lang="en">
 
 <head>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/js_script.js"></script>
+    <script src="js/vue_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>BurgerMeister</title>
     <meta charset="utf-8" />
 </head>
 
 <body>
     <main>
-        <h1>Welcome to BurgerMeister</h1>
-        <section>
+        <header class="heading">
+            <img id="headingImage" src="https://metrosaga.com/wp-content/uploads/2018/12/our-pubs-header.jpg">
+            <h1 id="headingWelcome">Welcome to BurgerMeister</h1>
+        </header>
+
+        <section id="burgers">
             <h2>Burger selection</h2>
             <p>Which one should the Meister serve you?</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fire Breath</th>
-                        <th>Soothing Supreme</th>
-                        <th>Echo Friendly</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="http://www.theangrybiscuit.com/wp-content/uploads/2018/05/Depositphotos_57722787_m-2015-2.jpg"
-                                alt="Fire Breath" title="Fire Breath" width="300"></td>
-                        <td><img src="https://www.max.se/contentassets/00848003f52b4c8d8dcf139ecdb3fc1e/product_gdl-umami-halloumi2.jpg"
-                                alt="Soothing Supreme" title="Soothing Supreme" width="300"></td>
-                        <td><img src="https://www.thespruceeats.com/thmb/KAgMssHoQUmx30uuYL_FTahXA0A=/2048x1360/filters:fill(auto,1)/vegan-mushroom-bean-burger-recipe-3378623-13_preview1-5b241897fa6bcc0036d2c9bf.jpeg"
-                                alt="Echo Friendly" title="Echo Friendly" width="300"></td>
-                    </tr>
-                    <tr>
-                        <td>Warning: Fiery hot! Not for weaklings!</td>
-                        <td>Smooth and Soothing for your soul</td>
-                        <td>Echoes the Eco</td>
-                    </tr>
-                    <tr>
-                        <td>200g beef patty</td>
-                        <td>200g halloumi patty</td>
-                        <td>200g mushroom & bean patty</td>
-                    </tr>
-                    <tr>
-                        <td>Pickled Caroline Reaper Sauce</td>
-                        <td>Umami Sauce</td>
-                        <td>Garlic and Cucumber Sauce</td>
-                    </tr>
-                    <tr>
-                        <td>Contains gluten and Lactose</td>
-                        <td>Contains gluten and Lactose</td>
-                        <td>Contains gluten</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="wrapper">
+                <div class="burger a">
+                    <img src="http://www.theangrybiscuit.com/wp-content/uploads/2018/05/Depositphotos_57722787_m-2015-2.jpg"
+                        alt="Fire Breath" title="Fire Breath" width="300">
+                    <div class="burgerTitle" style="text-align: center">Fire Breath</div>
+                    <div class="description" style="text-align: center">Warning: Fiery hot! Not for weaklings!</div>
+                    <div class="description" style="text-align: center">200g hot beef patty</div>
+                    <div class="description" style="text-align: center">Pickled Caroline Reaper Sauce</div>
+                    <div class="allergies" style="text-align: center">Contains Gluten and Lactose</div>
+                </div>
+                <div class="burger b">
+                    <img src="https://www.max.se/contentassets/00848003f52b4c8d8dcf139ecdb3fc1e/product_gdl-umami-halloumi2.jpg"
+                        alt="Soothing Supreme" title="Soothing Supreme" width="300">
+                    <div class="burgerTitle" style="text-align: center" >Soothing Supreme</div>
+                    <div class="description" style="text-align: center">Smooth and Soothing for your soul</div>
+                    <div class="description" style="text-align: center">200g halloumi patty</div>
+                    <div class="description" style="text-align: center">Umami Sauce</div>
+                    <div class="allergies" style="text-align: center">Contains Gluten and Lactose</div>
+                </div>
+                <div class="burger c">
+                    <img style="align-self: center;" src="https://www.thespruceeats.com/thmb/KAgMssHoQUmx30uuYL_FTahXA0A=/2048x1360/filters:fill(auto,1)/vegan-mushroom-bean-burger-recipe-3378623-13_preview1-5b241897fa6bcc0036d2c9bf.jpeg"
+                        alt="Echo Friendly" title="Echo Friendly" width="300">
+                    <div class="burgerTitle" style="text-align: center">Echo Friendly</div>
+                    <div class="description" style="text-align: center">Echoes the Eco</div>
+                    <div class="description" style="text-align: center">200g mushroom & bean patty</div>
+                    <div class="description" style="text-align: center">Garlic and Cucumber Sauce</div>
+                    <div class="allergies" style="text-align: center">Contains Gluten</div>
+                </div>
+            </div>
         </section>
         <section id="contact">
             <h2>Customer information</h2>
@@ -94,11 +92,13 @@
                 <input type="radio" checked="checked" name="un">
                 <lable class="container">Undisclosed</lable><br>
 
-                
+
             </form>
 
         </section>
-        <button type="submit" name="submitform"><img src="http://user.it.uu.se/~tholi747/sysdes/static/1md034/img/html/image_button.png"/></button>
+
+        <button type="submit" name="submitform"><img width=25
+                src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
     </main>
     <hr>
     <footer>footer</footer>
