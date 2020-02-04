@@ -10,6 +10,11 @@ function menuItem(bT, d1, d2, cal, al, iS)
     {
         return this.burgerTitle + ' - ' + this.calories;
     }
+    
+    this.dispAllergies = function()
+    {
+    		return this.allergies;
+    }
 }
 
 let burger1 = new menuItem("Fire Breath", "Warning: Fiery hot! Not for weaklings!", "200g hot beef patty", "850kCal", "Contains Gluten and Lactose", "http://www.theangrybiscuit.com/wp-content/uploads/2018/05/Depositphotos_57722787_m-2015-2.jpg");
@@ -20,10 +25,25 @@ let burger3 = new menuItem("Echo Friendly", "Echoes the Eco", "200g mushroom & b
 
 let burger4 = new menuItem("The Elly-burger", "Spicy and fresh", "180g halloumi patty", "580kCal", "Contains Gluten and Lactose", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/halloumi-burger-main-1558005486.png?crop=1.00xw:0.789xh;0,0.113xh&resize=480:*");
 
-let burger5 = new menuItem("Regular Cheese", "Just a cheese burger", "150g beef patty with cheddar", "895kCal", "Contains Gluten and Lactose", "https://tasteandsee.com/wp-content/uploads/2017/06/Easy-Pimento-Cheese-and-Bacon-Burger-EL-burger-great.jpg");
+let burger5 = new menuItem("Regular Cheese", "Just a cheese burger", "150g beef patty with cheddar", "895kCal", "", "https://tasteandsee.com/wp-content/uploads/2017/06/Easy-Pimento-Cheese-and-Bacon-Burger-EL-burger-great.jpg");
 
-document.getElementById("burger1").innerHTML = burger1.name();
-document.getElementById("burger2").innerHTML = burger2.name();
-document.getElementById("burger3").innerHTML = burger3.name();
-document.getElementById("burger4").innerHTML = burger4.name();
-document.getElementById("burger5").innerHTML = burger5.name();
+var menu = [burger1, burger2, burger3, burger4, burger5];
+
+let myMenu = document.getElementById("burgerMenu");
+for(i = 0; i < 5; i++)
+{
+	if(menu[i].dispAllergies().length > 0)
+  {
+		let listItem = document.createElement("li");
+  	let listValue = document.createTextNode(menu[i].name() + ' - ' + menu[i].dispAllergies());
+  	listItem.appendChild(listValue);
+  	myMenu.appendChild(listItem);
+  }
+  else
+  {
+  	let listItem = document.createElement("li");
+  	let listValue = document.createTextNode(menu[i].name());
+  	listItem.appendChild(listValue);
+  	myMenu.appendChild(listItem);
+  }
+}
