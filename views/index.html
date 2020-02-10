@@ -3,6 +3,7 @@
 
   <head>
     <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script type="text/javascript" src="js/menu.js"></script>
     <script src="js/js_script.js" defer></script>
     <script src="js/vue_script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -29,7 +30,8 @@
             <p>{{burger.description1}}</p>
             <p>{{burger.description2}}</p>
             <p>{{burger.calories}}</p>
-            <p class="burgerAllergies" v-if="burger.dispAllergies().length > 0">{{burger.allergies}}</p>
+            <p class="burgerAllergies" v-if="burger.gluten">Contains Gluten</p>
+            <p class="burgerAllergies" v-if="burger.lactose">Contains Lactose</p>
           </div>
 
         </div>
@@ -70,16 +72,16 @@
           </p>
           <p>Gender</p>
           <input type="radio" name="fe">
-          <lable class="container">Female</lable><br>
+          <label class="container">Female</label><br>
 
           <input type="radio" name="ma">
-          <lable class="container">Male</lable><br>
+          <label class="container">Male</label><br>
 
           <input type="radio" name="no">
-          <lable class="container">Non-binary</lable><br>
+          <label class="container">Non-binary</label><br>
 
           <input type="radio" checked="checked" name="un">
-          <lable class="container">Undisclosed</lable><br>
+          <label class="container">Undisclosed</label><br>
 
 
         </form>
