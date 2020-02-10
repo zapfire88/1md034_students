@@ -1,107 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <script src="https://vuejs.org/js/vue.js"></script>
-    <script src="js/js_script.js"></script>
-    <script src="js/vue_script.js"></script>
+  <head>
+    <script src="https://vuejs.org/js/vue.js" defer></script>
+    <script src="js/js_script.js" defer></script>
+    <script src="js/vue_script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>BurgerMeister</title>
     <meta charset="utf-8" />
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <header class="heading">
-            <img id="headingImage" src="https://metrosaga.com/wp-content/uploads/2018/12/our-pubs-header.jpg">
-            <h1 id="headingWelcome">Welcome to BurgerMeister</h1>
-        </header>
+      <header class="heading">
+        <img id="headingImage" src="https://metrosaga.com/wp-content/uploads/2018/12/our-pubs-header.jpg">
+        <h1 id="headingWelcome">Welcome to BurgerMeister</h1>
+      </header>
 
-        <section id="burgers">
-            <h2>Burger selection</h2>
-            <p>Which one should the Meister serve you?</p>
-            <div class="wrapper">
-                <div class="burger a">
-                    <img src="http://www.theangrybiscuit.com/wp-content/uploads/2018/05/Depositphotos_57722787_m-2015-2.jpg"
-                        alt="Fire Breath" title="Fire Breath" width="300">
-                    <div class="burgerTitle" style="text-align: center">Fire Breath</div>
-                    <div class="description" style="text-align: center">Warning: Fiery hot! Not for weaklings!</div>
-                    <div class="description" style="text-align: center">200g hot beef patty</div>
-                    <div class="description" style="text-align: center">Pickled Caroline Reaper Sauce</div>
-                    <div class="allergies" style="text-align: center">Contains Gluten and Lactose</div>
-                </div>
-                <div class="burger b">
-                    <img src="https://www.max.se/contentassets/00848003f52b4c8d8dcf139ecdb3fc1e/product_gdl-umami-halloumi2.jpg"
-                        alt="Soothing Supreme" title="Soothing Supreme" width="300">
-                    <div class="burgerTitle" style="text-align: center" >Soothing Supreme</div>
-                    <div class="description" style="text-align: center">Smooth and Soothing for your soul</div>
-                    <div class="description" style="text-align: center">200g halloumi patty</div>
-                    <div class="description" style="text-align: center">Umami Sauce</div>
-                    <div class="allergies" style="text-align: center">Contains Gluten and Lactose</div>
-                </div>
-                <div class="burger c">
-                    <img style="align-self: center;" src="https://www.thespruceeats.com/thmb/KAgMssHoQUmx30uuYL_FTahXA0A=/2048x1360/filters:fill(auto,1)/vegan-mushroom-bean-burger-recipe-3378623-13_preview1-5b241897fa6bcc0036d2c9bf.jpeg"
-                        alt="Echo Friendly" title="Echo Friendly" width="300">
-                    <div class="burgerTitle" style="text-align: center">Echo Friendly</div>
-                    <div class="description" style="text-align: center">Echoes the Eco</div>
-                    <div class="description" style="text-align: center">200g mushroom & bean patty</div>
-                    <div class="description" style="text-align: center">Garlic and Cucumber Sauce</div>
-                    <div class="allergies" style="text-align: center">Contains Gluten</div>
-                </div>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Customer information</h2>
-            <p>Provide necessary information for delivery:</p>
-            <form>
-                <p>
-                    <label for="fullname">Full name</label><br>
-                    <input type="text" id="fullname" name="fn" required="required" placeholder="First- & Last name" />
-                </p>
-                <p>
-                    <label for="email">E-mail</label><br>
-                    <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-                </p>
-                <p>
-                    <label for="street">Street</label><br>
-                    <input type="text" id="street" name="st" required="required" placeholder="Street name">
-                </p>
-                <p>
-                    <label for="house">House</label><br>
-                    <input type="number" id="house" name="ho" required="required" placeholder="House number">
-                </p>
-                <p>
-                    <label for="payment">Payment Method</label><br />
-                    <select id="payment" name="pa">
-                        <option selected="selected">Credit card</option>
-                        <option>Cash</option>
-                        <option>Bill</option>
-                        <option>Voucher</option>
-                    </select>
-                </p>
-                <p>Gender</p>
-                <input type="radio" name="fe">
-                <lable class="container">Female</lable><br>
+      <section id="burgers">
+        <h2>Burger selection</h2>
+        <p>Which one should the Meister serve you?</p>
 
-                <input type="radio" name="ma">
-                <lable class="container">Male</lable><br>
+        <!-- VUE -->
+        <div class="wrapper">
+          <div v-for="burger in menu">
+            <h3 class="burgerTitle">{{burger.burgerTitle}}</h3>
+            <img class="burgerImage" v-bind:src="burger.imageString">
+            <p>{{burger.description1}}</p>
+            <p>{{burger.description2}}</p>
+            <p>{{burger.calories}}</p>
+            <p class="burgerAllergies" v-if="burger.dispAllergies().length > 0">{{burger.allergies}}</p>
+          </div>
 
-                <input type="radio" name="no">
-                <lable class="container">Non-binary</lable><br>
+        </div>
 
-                <input type="radio" checked="checked" name="un">
-                <lable class="container">Undisclosed</lable><br>
+        <!-- JAVASCRIPT-->
+        <!--         <div class="wrapper" id="burgerMenu">
+          
+        </div> -->
+      </section>
+      <section id="contact">
+        <h2>Customer information</h2>
+        <p>Provide necessary information for delivery:</p>
+        <form>
+          <p>
+            <label for="fullname">Full name</label><br>
+            <input type="text" id="fullname" name="fn" required="required" placeholder="First- & Last name" />
+          </p>
+          <p>
+            <label for="email">E-mail</label><br>
+            <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
+          </p>
+          <p>
+            <label for="street">Street</label><br>
+            <input type="text" id="street" name="st" required="required" placeholder="Street name">
+          </p>
+          <p>
+            <label for="house">House</label><br>
+            <input type="number" id="house" name="ho" required="required" placeholder="House number">
+          </p>
+          <p>
+            <label for="payment">Payment Method</label><br />
+            <select id="payment" name="pa">
+              <option selected="selected">Credit card</option>
+              <option>Cash</option>
+              <option>Bill</option>
+              <option>Voucher</option>
+            </select>
+          </p>
+          <p>Gender</p>
+          <input type="radio" name="fe">
+          <lable class="container">Female</lable><br>
+
+          <input type="radio" name="ma">
+          <lable class="container">Male</lable><br>
+
+          <input type="radio" name="no">
+          <lable class="container">Non-binary</lable><br>
+
+          <input type="radio" checked="checked" name="un">
+          <lable class="container">Undisclosed</lable><br>
 
 
-            </form>
+        </form>
 
-        </section>
+      </section>
 
-        <button type="submit" name="submitform"><img width=25
-                src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
+      <button type="submit" name="submitform"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
     </main>
     <hr>
     <footer>footer</footer>
-</body>
+  </body>
 
 </html>
