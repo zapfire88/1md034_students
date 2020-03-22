@@ -130,8 +130,8 @@ function dispOrder() {
   let fullName = document.getElementById("fullname").value;
   let eMail = document.getElementById("email").value;
   let street = document.getElementById("street").value;
-  let house = document.getElementById("house").value;
-  let payment = document.getElementById("payment").value;
+  // let house = document.getElementById("house").value;
+  // let payment = document.getElementById("payment").value;
   var genders = document.getElementsByClassName("gender");
   
   var chosenGender;
@@ -143,7 +143,8 @@ function dispOrder() {
 
   }
 
-  order = [chosenBurgers, fullName, eMail, street, house, payment, chosenGender];
+  order = [chosenBurgers, fullName, eMail, payment, chosenGender];
+  // order = [chosenBurgers, fullName, eMail, street, house, payment, chosenGender];
 
   var youveOrdered = document.createElement("h2");
   youveOrdered.innerHTML = "--- Your Order: ---";

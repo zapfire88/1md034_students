@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <script src="/socket.io/socket.io.js" defer></script>
   <script src="https://vuejs.org/js/vue.js" defer></script>
   <script type="text/javascript" src="js/menu.js"></script>
   <script src="js/js_script.js" defer></script>
@@ -55,14 +56,23 @@
           <label for="email">E-mail</label><br>
           <input type="email" id="email" name="em" v-model="emailvue" required="required" placeholder="E-mail address">
         </p>
-        <p>
+        <div class="view-box">
+          <div id="dots" v-on:click="addOrder">
+              <div 
+                v-for="(order, key) in orders"
+                v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
+                {{key}}
+              </div>
+          </div>
+        </div>
+        <!-- <p>
           <label for="street">Street</label><br>
           <input type="text" id="street" name="st" v-model="streetvue" required="required" placeholder="Street name">
         </p>
         <p>
           <label for="house">House</label><br>
           <input type="number" id="house" name="ho" v-model="housevue" required="required" placeholder="House number">
-        </p>
+        </p> -->
         <p>
           <label for="payment">Payment Method</label><br />
           <select id="payment" v-model="paymentvue" name="pa">
@@ -87,7 +97,7 @@
       </form>
 
       <!-- VUE -->
-      <!-- <button id="submitButton" v-on:click="markDone()" type="submit"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
+      <button id="submitButton" v-on:click="markDone()" type="submit"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
         <div id="youveOrdered" v-if="seen === true">
           <h3>---ORDER---</h3>
           <p>{{orderedOrder.burgers}}</p>
@@ -97,12 +107,12 @@
           <p>{{orderedOrder.house}}</p>
           <p>{{orderedOrder.payment}}</p>
           <p>{{orderedOrder.gender}}</p>
-        </div>-->
+        </div>
 
       <!-- JAVASCRIPT -->
-      <button id="submitButton" type="submit" onclick="dispOrder()"><img width=25
+      <!-- <button id="submitButton" type="submit" onclick="dispOrder()"><img width=25
           src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
-      <div id="youveOrdered" hidden></div>
+      <div id="youveOrdered" hidden></div> -->
     </section>
 
 

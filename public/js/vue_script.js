@@ -25,33 +25,80 @@
 //   let burger5 = new menuItem("Regular Cheese", "Just a cheese burger", "150g beef patty with cheddar", "895kCal", "Contains Gluten and Lactose", "https://tasteandsee.com/wp-content/uploads/2017/06/Easy-Pimento-Cheese-and-Bacon-Burger-EL-burger-great.jpg");
 
 //   var menu = [burger1, burger2, burger3, burger4, burger5];
+'use strict';
+const socket = io();
 
-
-    var vm = new Vue({
-        el: 'main',
-        data: {
-            menu,
-            burgervue: [],
-            fnamevue: "",
-            emailvue: "",
-            streetvue: "",
-            housevue: "",
-            paymentvue: "Credit card",
-            gendervue: "Undisclosed",
-            seen: false,
-            orderedOrder: {},
-        },
+var vm = new Vue({
+    el: 'main',
+    data: {
+        menu,
+        burgervue: [],
+        fnamevue: "",
+        emailvue: "",
+        // streetvue: "",
+        // housevue: "",
+        paymentvue: "Credit card",
+        gendervue: "Undisclosed",
+        seen: false,
+        orderedOrder: {},
+        orders: {},
+    },
+    created: function() {
+        /* When the page is loaded, get the current orders stored on the server.
+         * (the server's code is in app.js) */
+        socket.on('initialize', function(data) {
+          this.orders = data.orders;
+        }.bind(this));
+    
+        /* Whenever an addOrder is emitted by a client (every open map.html is
+         * a client), the server responds with a currentQueue message (this is
+         * defined in app.js). The message's data payload is the entire updated
+         * order object. Here we define what the client should do with it.
+         * Spoiler: We replace the current local order object with the new one. */
+        socket.on('currentQueue', function(data) {
+          this.orders = data.orders;
+        }.bind(this));
+      },
     methods: {
+        getNext: function() {
+            /* This function returns the next available key (order number) in
+             * the orders object, it works under the assumptions that all keys
+             * are integers. */
+            let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
+              return Math.max(last, next);
+            }, 0);
+            return lastOrder + 1;
+          },
+          addOrder: function(event) {
+            /* When you click in the map, a click event object is sent as parameter
+             * to the function designated in v-on:click (i.e. this one).
+             * The click event object contains among other things different
+             * coordinates that we need when calculating where in the map the click
+             * actually happened. */
+            let offset = {
+              x: event.currentTarget.getBoundingClientRect().left,
+              y: event.currentTarget.getBoundingClientRect().top,
+            };
+            socket.emit('addOrder', {
+              orderId: this.getNext(),
+              details: {
+                x: event.clientX - 10 - offset.x,
+                y: event.clientY - 10 - offset.y,
+              },
+              orderItems: ['Beans', 'Curry'],
+            });
+          },
         markDone: function () {
             this.seen = true;
             this.orderedOrder = {
                 burgers: "Burgers: " + this.burgervue,
-                fname: "Full Name: " + this.fnamevue, 
+                fname: "Full Name: " + this.fnamevue,
                 email: "Email: " + this.emailvue,
-                street: "Street: " + this.streetvue, 
-                house: "House: " + this.housevue, 
-                payment: "Payment: " + this.paymentvue, 
-                gender: "Gender: " + this.gendervue}
+                // street: "Street: " + this.streetvue, 
+                // house: "House: " + this.housevue, 
+                payment: "Payment: " + this.paymentvue,
+                gender: "Gender: " + this.gendervue
+            }
             // alert(
             //     "-------- ORDER --------" + "\n\n" +
             //     "Burgers: " + this.burgervue + "\n" +
@@ -61,6 +108,6 @@
             //     "House: " + this.housevue + "\n" +
             //     "Payment Method: " + this.paymentvue + "\n" +
             //     "Gender: " + this.gendervue)
-            }
         }
+    }
 })
