@@ -10,7 +10,7 @@
 //     {
 //         return this.burgerTitle + ' - ' + this.calories;
 //     }
-    
+
 //     this.dispAllergies = function()
 //     {
 //     		return this.allergies;
@@ -39,12 +39,12 @@
 // 		let listItemName = document.createElement("h3");
 // 		listItemName.className = "burgerTitle";
 //   	let itemName = document.createTextNode(menu[i].burgerTitle);
-		
+
 // 		//Burger Image
 // 		let listItemImg = document.createElement("img")
 // 		listItemImg.className = "burgerImage";
 // 		listItemImg.src = menu[i].imageString;
-		
+
 // 		//Burger Attributes
 // 		let listItemDesc1 = document.createElement("p");
 // 		let itemDesc1 = document.createTextNode(menu[i].description1);
@@ -56,13 +56,13 @@
 // 		listItemAllergies.className = "burgerAllergies";
 // 		let itemAllergies = document.createTextNode(menu[i].allergies);
 
-		
+
 // 		listItemName.appendChild(itemName);
 // 		listItemDesc1.appendChild(itemDesc1);
 // 		listItemDesc2.appendChild(itemDesc2);
 // 		listItemCalories.appendChild(itemCalories);
 // 		listItemAllergies.appendChild(itemAllergies);
-		
+
 //   	newBurger.appendChild(listItemName);
 // 		newBurger.appendChild(listItemImg);
 // 		newBurger.appendChild(listItemDesc1);
@@ -70,19 +70,19 @@
 // 		newBurger.appendChild(listItemCalories);
 // 		newBurger.appendChild(listItemAllergies);
 //   }
-	
+
 //   else
 //   {
 // //Burger Title
 // 		let listItemName = document.createElement("h3");
 // 		listItemName.className = "burgerTitle";
 //   	let itemName = document.createTextNode(menu[i].burgerTitle);
-		
+
 // 		//Burger Image
 // 		let listItemImg = document.createElement("img");
 // 		listItemImg.src = menu[i].imageString;
 // 		listItemImg.className = "burgerImage";
-		
+
 // 		//Burger Attributes
 // 		let listItemDesc1 = document.createElement("p");
 // 		let itemDesc1 = document.createTextNode(menu[i].description1);
@@ -91,13 +91,13 @@
 // 		let listItemCalories = document.createElement("p");
 // 		let itemCalories = document.createTextNode(menu[i].calories);
 
-		
+
 // 		listItemName.appendChild(itemName);
 // 		listItemDesc1.appendChild(itemDesc1);
 // 		listItemDesc2.appendChild(itemDesc2);
 // 		listItemCalories.appendChild(itemCalories);
-		
-	
+
+
 //   	newBurger.appendChild(listItemName);
 // 		newBurger.appendChild(listItemImg);
 // 		newBurger.appendChild(listItemDesc1);
@@ -106,3 +106,75 @@
 //   }
 // 	myMenu.appendChild(newBurger);
 // }
+
+
+
+
+
+
+
+function dispOrder() {
+  document.getElementById("youveOrdered").innerHTML = "";
+  var order = [];
+  var chosenBurgers = [];
+  let newOrder = document.getElementById("youveOrdered");
+  let checkedBurgers = document.getElementsByClassName("burgerCheck");
+  var i, j;
+  for (i = 0, j = 0; i < checkedBurgers.length; i++) {
+    if (checkedBurgers[i].checked) {
+      chosenBurgers[j] = checkedBurgers[i].value;
+      console.log(chosenBurgers[j]);
+      j++;
+    }
+  }
+  let fullName = document.getElementById("fullname").value;
+  let eMail = document.getElementById("email").value;
+  let street = document.getElementById("street").value;
+  let house = document.getElementById("house").value;
+  let payment = document.getElementById("payment").value;
+  var genders = document.getElementsByClassName("gender");
+  
+  var chosenGender;
+  for (i = 0; i < genders.length; i++) {
+    if (genders[i].checked) {
+      chosenGender = genders[i].value;
+      break;
+    }
+
+  }
+
+  order = [chosenBurgers, fullName, eMail, street, house, payment, chosenGender];
+
+  var youveOrdered = document.createElement("h2");
+  youveOrdered.innerHTML = "--- Your Order: ---";
+  newOrder.appendChild(youveOrdered);
+
+  var burgerOrderText = document.createElement("h3");
+  burgerOrderText.textContent = "Burgers: ";
+  newOrder.appendChild(burgerOrderText);
+
+  var burgerOrderList = document.createElement("ul");
+  for (i = 0; i < chosenBurgers.length; i++) {
+    var dispChosenBurgers = document.createElement("li");
+    dispChosenBurgers.textContent = chosenBurgers[i];
+    burgerOrderList.appendChild(dispChosenBurgers);
+  }
+  newOrder.appendChild(burgerOrderList);
+
+  var deliveryText = document.createElement("h3");
+  deliveryText.textContent = "Delivery Info: ";
+  newOrder.appendChild(deliveryText);
+
+  var deliveryList = document.createElement("ul");
+  for (i = 1; i < order.length; i++) {
+    var deliveryInfo = document.createElement("li");
+    deliveryInfo.textContent = order[i];
+    deliveryList.appendChild(deliveryInfo);
+  }
+  newOrder.appendChild(deliveryList);
+
+  document.getElementById("youveOrdered").hidden = false;
+
+}
+
+

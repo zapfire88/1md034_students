@@ -1,97 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <script src="https://vuejs.org/js/vue.js" defer></script>
-    <script type="text/javascript" src="js/menu.js"></script>
-    <script src="js/js_script.js" defer></script>
-    <script src="js/vue_script.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>BurgerMeister</title>
-    <meta charset="utf-8" />
-  </head>
+<head>
+  <script src="https://vuejs.org/js/vue.js" defer></script>
+  <script type="text/javascript" src="js/menu.js"></script>
+  <script src="js/js_script.js" defer></script>
+  <script src="js/vue_script.js" defer></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <title>BurgerMeister</title>
+  <meta charset="utf-8" />
+</head>
 
-  <body>
-    <main>
-      <header class="heading">
-        <img id="headingImage" src="https://metrosaga.com/wp-content/uploads/2018/12/our-pubs-header.jpg">
-        <h1 id="headingWelcome">Welcome to BurgerMeister</h1>
-      </header>
+<body>
+  <main>
+    <header class="heading">
+      <img id="headingImage" src="https://metrosaga.com/wp-content/uploads/2018/12/our-pubs-header.jpg">
+      <h1 id="headingWelcome">Welcome to BurgerMeister</h1>
+    </header>
 
-      <section id="burgers">
-        <h2>Burger selection</h2>
-        <p>Which one should the Meister serve you?</p>
+    <section id="burgers">
+      <h2>Burger selection</h2>
+      <p>Which one should the Meister serve you?</p>
 
-        <!-- VUE -->
-        <div class="wrapper">
-          <div v-for="burger in menu">
-            <h3 class="burgerTitle">{{burger.burgerTitle}}</h3>
-            <img class="burgerImage" v-bind:src="burger.imageString">
-            <p>{{burger.description1}}</p>
-            <p>{{burger.description2}}</p>
-            <p>{{burger.calories}}</p>
-            <p class="burgerAllergies" v-if="burger.gluten">Contains Gluten</p>
-            <p class="burgerAllergies" v-if="burger.lactose">Contains Lactose</p>
-          </div>
-
+      <!-- VUE -->
+      <div class="wrapper">
+        <div v-for="burger in menu">
+          <h3 class="burgerTitle">{{burger.burgerTitle}}</h3>
+          <img class="burgerImage" v-bind:src="burger.imageString">
+          <p>{{burger.description1}}</p>
+          <p>{{burger.description2}}</p>
+          <p>{{burger.calories}}</p>
+          <p class="burgerAllergies" v-if="burger.gluten">Contains Gluten</p>
+          <p class="burgerAllergies" v-if="burger.lactose">Contains Lactose</p>
+          <input type="checkbox" class="burgerCheck" v-model="burgervue" v-bind:value="burger.burgerTitle">
         </div>
 
-        <!-- JAVASCRIPT-->
-        <!--         <div class="wrapper" id="burgerMenu">
+      </div>
+
+      <!-- JAVASCRIPT-->
+      <!--         <div class="wrapper" id="burgerMenu">
           
         </div> -->
-      </section>
-      <section id="contact">
-        <h2>Customer information</h2>
-        <p>Provide necessary information for delivery:</p>
-        <form>
-          <p>
-            <label for="fullname">Full name</label><br>
-            <input type="text" id="fullname" name="fn" required="required" placeholder="First- & Last name" />
-          </p>
-          <p>
-            <label for="email">E-mail</label><br>
-            <input type="email" id="email" name="em" required="required" placeholder="E-mail address">
-          </p>
-          <p>
-            <label for="street">Street</label><br>
-            <input type="text" id="street" name="st" required="required" placeholder="Street name">
-          </p>
-          <p>
-            <label for="house">House</label><br>
-            <input type="number" id="house" name="ho" required="required" placeholder="House number">
-          </p>
-          <p>
-            <label for="payment">Payment Method</label><br />
-            <select id="payment" name="pa">
-              <option selected="selected">Credit card</option>
-              <option>Cash</option>
-              <option>Bill</option>
-              <option>Voucher</option>
-            </select>
-          </p>
-          <p>Gender</p>
-          <input type="radio" name="fe">
+    </section>
+    <section id="contact">
+      <h2>Customer information</h2>
+      <p>Provide necessary information for delivery:</p>
+      <form>
+        <p>
+          <label for="fullname">Full name</label><br>
+          <input type="text" id="fullname" v-model="fnamevue" name="fn" required="required"
+            placeholder="First- & Last name" />
+        </p>
+        <p>
+          <label for="email">E-mail</label><br>
+          <input type="email" id="email" name="em" v-model="emailvue" required="required" placeholder="E-mail address">
+        </p>
+        <p>
+          <label for="street">Street</label><br>
+          <input type="text" id="street" name="st" v-model="streetvue" required="required" placeholder="Street name">
+        </p>
+        <p>
+          <label for="house">House</label><br>
+          <input type="number" id="house" name="ho" v-model="housevue" required="required" placeholder="House number">
+        </p>
+        <p>
+          <label for="payment">Payment Method</label><br />
+          <select id="payment" v-model="paymentvue" name="pa">
+            <option selected="selected">Credit card</option>
+            <option>Cash</option>
+            <option>Bill</option>
+            <option>Voucher</option>
+          </select>
+        </p>
+        <p>Gender</p>
+          <input type="radio" class="gender" v-model="gendervue" value="Female">
           <label class="container">Female</label><br>
 
-          <input type="radio" name="ma">
+          <input type="radio" class="gender" v-model="gendervue" value="Male">
           <label class="container">Male</label><br>
 
-          <input type="radio" name="no">
+          <input type="radio" class="gender" v-model="gendervue" value="Non-binary">
           <label class="container">Non-binary</label><br>
 
-          <input type="radio" checked="checked" name="un">
+          <input type="radio" checked="checked" class="gender" v-model="gendervue" value="Undisclosed">
           <label class="container">Undisclosed</label><br>
+      </form>
+
+      <!-- VUE -->
+      <!-- <button id="submitButton" v-on:click="markDone()" type="submit"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
+        <div id="youveOrdered" v-if="seen === true">
+          <h3>---ORDER---</h3>
+          <p>{{orderedOrder.burgers}}</p>
+          <p>{{orderedOrder.fname}}</p>
+          <p>{{orderedOrder.email}}</p>
+          <p>{{orderedOrder.street}}</p>
+          <p>{{orderedOrder.house}}</p>
+          <p>{{orderedOrder.payment}}</p>
+          <p>{{orderedOrder.gender}}</p>
+        </div>-->
+
+      <!-- JAVASCRIPT -->
+      <button id="submitButton" type="submit" onclick="dispOrder()"><img width=25
+          src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
+      <div id="youveOrdered" hidden></div>
+    </section>
 
 
-        </form>
-
-      </section>
-
-      <button type="submit" name="submitform"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
-    </main>
-    <hr>
-    <footer>footer</footer>
-  </body>
+  </main>
+  <hr>
+  <footer>footer</footer>
+</body>
 
 </html>
