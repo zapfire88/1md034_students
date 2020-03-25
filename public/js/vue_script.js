@@ -29,85 +29,95 @@
 const socket = io();
 
 var vm = new Vue({
-    el: 'main',
-    data: {
-        menu,
-        burgervue: [],
-        fnamevue: "",
-        emailvue: "",
-        // streetvue: "",
-        // housevue: "",
-        paymentvue: "Credit card",
-        gendervue: "Undisclosed",
-        seen: false,
-        orderedOrder: {},
-        orders: {},
-    },
-    created: function() {
-        /* When the page is loaded, get the current orders stored on the server.
-         * (the server's code is in app.js) */
-        socket.on('initialize', function(data) {
-          this.orders = data.orders;
-        }.bind(this));
-    
-        /* Whenever an addOrder is emitted by a client (every open map.html is
-         * a client), the server responds with a currentQueue message (this is
-         * defined in app.js). The message's data payload is the entire updated
-         * order object. Here we define what the client should do with it.
-         * Spoiler: We replace the current local order object with the new one. */
-        socket.on('currentQueue', function(data) {
-          this.orders = data.orders;
-        }.bind(this));
+  el: 'main',
+  data: {
+    menu,
+    burgervue: [],
+    fnamevue: "",
+    emailvue: "",
+    // streetvue: "",
+    // housevue: "",
+    paymentvue: "Credit card",
+    gendervue: "Undisclosed",
+    seen: false,
+    orders: {},
+    localOrder: {
+      details: {
+        x: 0,
+        y: 0,
       },
-    methods: {
-        getNext: function() {
-            /* This function returns the next available key (order number) in
-             * the orders object, it works under the assumptions that all keys
-             * are integers. */
-            let lastOrder = Object.keys(this.orders).reduce(function(last, next) {
-              return Math.max(last, next);
-            }, 0);
-            return lastOrder + 1;
-          },
-          addOrder: function(event) {
-            /* When you click in the map, a click event object is sent as parameter
-             * to the function designated in v-on:click (i.e. this one).
-             * The click event object contains among other things different
-             * coordinates that we need when calculating where in the map the click
-             * actually happened. */
-            let offset = {
-              x: event.currentTarget.getBoundingClientRect().left,
-              y: event.currentTarget.getBoundingClientRect().top,
-            };
-            socket.emit('addOrder', {
-              orderId: this.getNext(),
-              details: {
-                x: event.clientX - 10 - offset.x,
-                y: event.clientY - 10 - offset.y,
-              },
-              orderItems: ['Beans', 'Curry'],
-            });
-          },
-        markDone: function () {
-            this.seen = true;
-            this.orderedOrder = {
-                burgers: "Burgers: " + this.burgervue,
-                fname: "Full Name: " + this.fnamevue,
-                email: "Email: " + this.emailvue,
-                // street: "Street: " + this.streetvue, 
-                // house: "House: " + this.housevue, 
-                payment: "Payment: " + this.paymentvue,
-                gender: "Gender: " + this.gendervue
-            }
-            // alert(
-            //     "-------- ORDER --------" + "\n\n" +
-            //     "Burgers: " + this.burgervue + "\n" +
-            //     "Full Name: " + this.fnamevue + "\n" +
-            //     "Email: " + this.emailvue + "\n" +
-            //     "Street: " + this.streetvue + "\n" +
-            //     "House: " + this.housevue + "\n" +
-            //     "Payment Method: " + this.paymentvue + "\n" +
-            //     "Gender: " + this.gendervue)
-        }
-    }
+    },
+    lastOrder: 0,
+  },
+  methods: {
+
+    getNext: function () {
+      /* This function returns the next available key (order number) in
+       * the orders object, it works under the assumptions that all keys
+       * are integers. */
+      this.lastOrder = Object.keys(this.orders).reduce(function (last, next) {
+        return Math.max(last, next);
+      }, 0);
+      return this.lastOrder + 1;
+    },
+
+    addOrder: function (event) {
+      /* When you click in the map, a click event object is sent as parameter
+       * to the function designated in v-on:click (i.e. this one).
+       * The click event object contains among other things different
+       * coordinates that we need when calculating where in the map the click
+       * actually happened. */
+      
+      // let offset = {
+      //   x: event.currentTarget.getBoundingClientRect().left,
+      //   y: event.currentTarget.getBoundingClientRect().top,
+      // };
+      var customerInfo = [this.fnamevue, this.emailvue, this.paymentvue, this.gendervue];
+      this.seen = true;
+      socket.emit('addOrder', {
+        orderId: this.getNext(), 
+        details: { 
+          x: this.localOrder.details.x, 
+          y: this.localOrder.details.y,
+        },
+        orderItems: this.burgervue,
+      });
+    },
+
+    displayOrder: function () {
+
+      let offset = {
+        x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top,
+      };
+
+      this.localOrder.details.x = event.clientX - 10 - offset.x;
+      this.localOrder.details.y = event.clientY - 10 - offset.y;
+
+      console.log("X: ", this.localOrder.details.x, "Y: ", this.localOrder.details.y);
+
+    },
+
+    // markDone: function () {
+    //   this.seen = true;
+    //   this.orderedOrder = {
+    //     burgers: "Burgers: " + this.burgervue,
+    //     fname: "Full Name: " + this.fnamevue,
+    //     email: "Email: " + this.emailvue,
+    //     // street: "Street: " + this.streetvue, 
+    //     // house: "House: " + this.housevue, 
+    //     payment: "Payment: " + this.paymentvue,
+    //     gender: "Gender: " + this.gendervue
+    //   }
+      // alert(
+      //     "-------- ORDER --------" + "\n\n" +
+      //     "Burgers: " + this.burgervue + "\n" +
+      //     "Full Name: " + this.fnamevue + "\n" +
+      //     "Email: " + this.emailvue + "\n" +
+      //     "Street: " + this.streetvue + "\n" +
+      //     "House: " + this.housevue + "\n" +
+      //     "Payment Method: " + this.paymentvue + "\n" +
+      //     "Gender: " + this.gendervue)
+    // }
+  }
 })

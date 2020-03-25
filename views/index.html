@@ -57,12 +57,10 @@
           <input type="email" id="email" name="em" v-model="emailvue" required="required" placeholder="E-mail address">
         </p>
         <div class="view-box">
-          <div id="dots" v-on:click="addOrder">
-              <div 
-                v-for="(order, key) in orders"
-                v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}">
-                {{key}}
-              </div>
+          <div id="dots" v-on:click="displayOrder">
+            <div v-bind:style="{ left: localOrder.details.x + 'px', top: localOrder.details.y + 'px'}">
+              T
+            </div>
           </div>
         </div>
         <!-- <p>
@@ -83,31 +81,33 @@
           </select>
         </p>
         <p>Gender</p>
-          <input type="radio" class="gender" v-model="gendervue" value="Female">
-          <label class="container">Female</label><br>
+        <input type="radio" class="gender" v-model="gendervue" value="Female">
+        <label class="container">Female</label><br>
 
-          <input type="radio" class="gender" v-model="gendervue" value="Male">
-          <label class="container">Male</label><br>
+        <input type="radio" class="gender" v-model="gendervue" value="Male">
+        <label class="container">Male</label><br>
 
-          <input type="radio" class="gender" v-model="gendervue" value="Non-binary">
-          <label class="container">Non-binary</label><br>
+        <input type="radio" class="gender" v-model="gendervue" value="Non-binary">
+        <label class="container">Non-binary</label><br>
 
-          <input type="radio" checked="checked" class="gender" v-model="gendervue" value="Undisclosed">
-          <label class="container">Undisclosed</label><br>
+        <input type="radio" checked="checked" class="gender" v-model="gendervue" value="Undisclosed">
+        <label class="container">Undisclosed</label><br>
       </form>
 
       <!-- VUE -->
-      <button id="submitButton" v-on:click="markDone()" type="submit"><img width=25 src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
-        <div id="youveOrdered" v-if="seen === true">
-          <h3>---ORDER---</h3>
-          <p>{{orderedOrder.burgers}}</p>
-          <p>{{orderedOrder.fname}}</p>
-          <p>{{orderedOrder.email}}</p>
-          <p>{{orderedOrder.street}}</p>
-          <p>{{orderedOrder.house}}</p>
-          <p>{{orderedOrder.payment}}</p>
-          <p>{{orderedOrder.gender}}</p>
-        </div>
+      <button id="submitButton" v-on:click="addOrder()" type="submit"><img width=25
+          src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Checkmark_green.svg" />Send info</button>
+      <div id="youveOrdered" v-if="seen === true">
+        <h3>---ORDER---</h3>
+        <h4>Chosen Burgers:</h4>
+        <p v-for="burger in burgervue">{{burger}}</p>
+
+        <h4>Personal Information</h4>
+        <p>{{fnamevue}}</p>
+        <p>{{emailvue}}</p>
+        <p>{{paymentvue}}</p>
+        <p>{{gendervue}}</p>
+      </div>
 
       <!-- JAVASCRIPT -->
       <!-- <button id="submitButton" type="submit" onclick="dispOrder()"><img width=25
